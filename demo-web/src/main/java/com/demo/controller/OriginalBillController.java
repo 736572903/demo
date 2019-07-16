@@ -17,7 +17,6 @@ import com.demo.service.IOriginalBillService;
 /**
  * 
  * http://localhost:8081/bill/queryOriginalBill
- * @date 2019年6月24日
  */
 @Controller
 @RequestMapping("/bill")
