@@ -9,7 +9,7 @@ import com.dangdang.ddframe.job.api.ShardingContext;
 import com.dangdang.ddframe.job.api.dataflow.DataflowJob;
 
 /**
- * elastic job 数据流定时任务
+ * elastic job  数据流定时任务
  */
 public class DataFlowElasticJob implements DataflowJob<String>{
 	
