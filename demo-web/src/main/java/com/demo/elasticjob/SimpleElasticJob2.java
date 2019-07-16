@@ -27,8 +27,8 @@ public class SimpleElasticJob2 implements SimpleJob{
     
 	@Override
 	public void execute(ShardingContext shardingContext) {
-//		System.out.println(sdf.format(new Date())+"第二个job");
-//		logger.info(String.format("第二个job日志打印：%s", shardingContext.getShardingItem()));
+		System.out.println(sdf.format(new Date())+"第二个job");
+		logger.info(String.format("第二个job日志打印：%s", shardingContext.getShardingItem()));
 //		List<OriginalBill> list = originalService.getAllOriginalBill();
 //		if(list == null || list.size() == 0){
 //			return;
