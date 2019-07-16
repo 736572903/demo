@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>    
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- dao层 -->
+<mapper namespace="com.demo.mapper.OriginalBillDao">  
+    <resultMap id="originalBillResultMap" type="com.demo.entity.OriginalBill">  
+        <id column="id" property="id" jdbcType="BIGINT" />  
+        <result column="kh_user_id" property="khUserId" jdbcType="BIGINT" />  
+        <result column="email_address" property="emailAddress" jdbcType="VARCHAR" />  
+        <result column="down_time" property="downTime" jdbcType="TIMESTAMP" />  
+        <result column="last_update_user" property="lastUpdateUser" jdbcType="BIGINT" />  
+    </resultMap>  
+    
+    <!-- 查询一个用户 -->
+    <select id="getOriginalBillByUserId" parameterType="long" resultMap="originalBillResultMap">  
+        SELECT id,
+        	   kh_user_id,
+        	   email_address,
+        	   last_update_user,
+        	   down_time
+         FROM m_original_bill WHERE kh_user_id=#{khUserId}
+    </select>  
+    
+    <!-- 查询所有用户 -->
+    <select id="getAllOriginalBill" resultMap="originalBillResultMap">  
+        SELECT id,
+        	   kh_user_id,
+        	   last_update_user,
+        	   email_address,
+        	   down_time
+         FROM m_original_bill WHERE 1=1
+    </select>
+    
+    <!-- 更新 -->
+    <update id="updateOriginalBill" parameterType="com.demo.entity.OriginalBill">  
+    	update m_original_bill
+    	
+    	<set>
+            <if test="emailAddress != null">email_address=#{emailAddress},</if>
+            <if test="khUserId != null">kh_user_id=#{khUserId},</if>
+            <if test="lastUpdateUser != null">last_update_user=#{lastUpdateUser},</if>
+            <if test="downTime != null">down_time=#{downTime}</if>
+        </set>
+    	
+    	where id=#{id}
+    </update>
+</mapper>
