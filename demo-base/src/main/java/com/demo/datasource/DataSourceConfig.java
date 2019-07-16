@@ -17,6 +17,8 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import com.demo.transaction.MultiDataSourceTransactionFactory;
+
 @Configuration
 @MapperScan(basePackages = "com.demo.mapper", sqlSessionFactoryRef = "SqlSessionFactory")
 @PropertySource(value = {"classpath:config-base/application.properties"})

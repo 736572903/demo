@@ -1,7 +1,9 @@
-package com.demo.datasource;
+package com.demo.transaction;
 
 import com.alibaba.druid.support.logging.Log;
 import com.alibaba.druid.support.logging.LogFactory;
+import com.demo.datasource.DataSourceType;
+
 import org.apache.ibatis.transaction.Transaction;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.datasource.DataSourceUtils;
@@ -11,8 +13,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
-
-//import static org.apache.commons.lang3.Validate.notNull;
 
 /**
  * <P>
@@ -26,7 +26,6 @@ public class MultiDataSourceTransaction implements Transaction {
 
 	private Connection mainConnection;
 
-//	private String mainDatabaseIdentification;
 	private DataSourceType.DataBaseType mainDatabaseIdentification;
 
 	private ConcurrentMap<DataSourceType.DataBaseType, Connection> otherConnectionMap;
@@ -36,10 +35,8 @@ public class MultiDataSourceTransaction implements Transaction {
 	private boolean autoCommit;
 
 	public MultiDataSourceTransaction(DataSource dataSource) {
-//		notNull(dataSource, "No DataSource specified");
 		this.dataSource = dataSource;
 		otherConnectionMap = new ConcurrentHashMap<>();
-//		mainDatabaseIdentification = DataSourceContextHolder.getReadOrWrite();
 		mainDatabaseIdentification = DataSourceType.getDataBaseType();
 		
 	}
@@ -49,7 +46,6 @@ public class MultiDataSourceTransaction implements Transaction {
 	 */
 	@Override
 	public Connection getConnection() throws SQLException {
-//		String databaseIdentification = DataSourceContextHolder.getReadOrWrite();
 		DataSourceType.DataBaseType databaseIdentification = DataSourceType.getDataBaseType();
 		if (databaseIdentification == mainDatabaseIdentification) {
 			if (mainConnection != null)
