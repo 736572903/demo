@@ -21,7 +21,7 @@ import com.demo.transaction.MultiDataSourceTransactionFactory;
 
 @Configuration
 @MapperScan(basePackages = "com.demo.mapper", sqlSessionFactoryRef = "SqlSessionFactory")
-@PropertySource(value = { "classpath:config-base/application.properties" })
+@PropertySource(value = { "classpath:config/application.properties" })
 public class DataSourceConfig {
 
 	@Primary
