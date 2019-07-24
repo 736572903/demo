@@ -24,16 +24,22 @@ public class HbAppServiceImpl implements IHbAppService{
 	@Override
 	@Transactional(transactionManager="transactionManager2", rollbackFor=Exception.class, 
 			propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
-	public void saveHbApp(HbApp hbApp) {
+	public void saveHbAppHasTransaction() {
+		
+		HbApp hbApp = new HbApp();
+		hbApp.setName("name3");
+		hbApp.setCid(1);
+		hbApp.setStatus(1);
+		hbApp.setContact("contact");
 		
 		hbAppDao.saveHbApp(hbApp);
 		
-		HbApp hbApp1 = new HbApp();
-		hbApp1.setName("name4");
-		hbApp1.setCid(1);
-		hbApp1.setStatus(1);
-		hbApp1.setContact("contact");
-		hbAppDao.saveHbApp(hbApp1);
+		hbApp = new HbApp();
+		hbApp.setName("name4");
+		hbApp.setCid(1);
+		hbApp.setStatus(1);
+		hbApp.setContact("contact");
+		hbAppDao.saveHbApp(hbApp);
 		
 		//触发回滚
 		hbApp = null;

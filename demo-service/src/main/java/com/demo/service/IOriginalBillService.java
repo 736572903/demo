@@ -12,4 +12,5 @@ public interface IOriginalBillService {
 	List<OriginalBill> getAllOriginalBill();
 	
 	void updateOriginalBill(OriginalBill originalBill);
+
 }
