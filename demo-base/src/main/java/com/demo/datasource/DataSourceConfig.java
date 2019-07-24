@@ -21,9 +21,9 @@ import com.demo.transaction.MultiDataSourceTransactionFactory;
 
 @Configuration
 @MapperScan(basePackages = "com.demo.mapper", sqlSessionFactoryRef = "SqlSessionFactory")
-@PropertySource(value = {"classpath:config-base/application.properties"})
+@PropertySource(value = { "classpath:config-base/application.properties" })
 public class DataSourceConfig {
-	
+
 	@Primary
 	@Bean(name = "datasource1")
 	@ConfigurationProperties(prefix = "spring.datasource1")
@@ -55,23 +55,23 @@ public class DataSourceConfig {
 		SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
 		bean.setDataSource(dynamicDataSource);
 		bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:mapper/*.xml"));
-        bean.setTransactionFactory(new MultiDataSourceTransactionFactory());
-		
+		bean.setTransactionFactory(new MultiDataSourceTransactionFactory());
+
 		return bean.getObject();
 	}
-	
+
 	/**
 	 * 事务管理
 	 */
-//	@Primary
+	@Primary
 	@Bean(name = "transactionManager1")
-    public PlatformTransactionManager oneTransactionManager(@Qualifier("datasource1")DataSource datasource1) {
-     return new DataSourceTransactionManager(datasource1);
-    }
-     
-    @Bean(name = "transactionManager2")
-    public PlatformTransactionManager twoTransactionManager(@Qualifier("datasource2")DataSource datasource2) {
-     return new DataSourceTransactionManager(datasource2);
-    }
-	
+	public PlatformTransactionManager oneTransactionManager(@Qualifier("datasource1") DataSource datasource1) {
+		return new DataSourceTransactionManager(datasource1);
+	}
+
+	@Bean(name = "transactionManager2")
+	public PlatformTransactionManager twoTransactionManager(@Qualifier("datasource2") DataSource datasource2) {
+		return new DataSourceTransactionManager(datasource2);
+	}
+
 }
