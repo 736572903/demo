@@ -1,6 +1,8 @@
 package com.demo.controller;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.demo.entity.HbApp;
 import com.demo.entity.OriginalBill;
 import com.demo.service.IHbAppService;
 import com.demo.service.IOriginalBillService;
@@ -34,6 +35,7 @@ public class OriginalBillController {
 	@ResponseBody
 	public String queryOriginalBill(){
 		
+		//数据源1 正常查询
 		List<OriginalBill> list = originalService.getOriginalBillByUserId(193);
 		if(list != null && list.size() > 0){
 			OriginalBill bill = list.get(0);
@@ -42,17 +44,35 @@ public class OriginalBillController {
 		}
 		
 		try {
-			HbApp hbApp = new HbApp();
-			hbApp.setName("name3");
-			hbApp.setCid(1);
-			hbApp.setStatus(1);
-			hbApp.setContact("contact");
-			hbAppService.saveHbApp(hbApp);
+			//数据源2 只对一个数据源操作并成功回滚
+			hbAppService.saveHbAppHasTransaction();
 		} catch (Exception e) {
 			System.out.println(String.format("捕捉：%s", e.getMessage()));
 		}
+		
+		
+		//数据源2 正常存储
 		hbAppService.saveHbAppNoTransaction();
 		return list.toString();
+		
+	}
+	
+	
+	//两个不同数据源均回滚，事务生效
+	@Transactional
+	@GetMapping("/testMutiDataRollback")
+	@ResponseBody
+	public void testMutiDataRollback(){
+		
+		OriginalBill bill = Optional.ofNullable(originalService.getOriginalBillByUserId(193))
+				.map(list -> list.get(0)).orElse(new OriginalBill());
+		
+		bill.setEmailAddress("ceshi5");
+		originalService.updateOriginalBill(bill);
+		
+		hbAppService.saveHbAppNoTransaction();
+		
+		double a = 1/0;
 		
 	}
 	
