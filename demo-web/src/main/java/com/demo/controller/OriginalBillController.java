@@ -50,7 +50,6 @@ public class OriginalBillController {
 			System.out.println(String.format("捕捉：%s", e.getMessage()));
 		}
 		
-		
 		//数据源2 正常存储
 		hbAppService.saveHbAppNoTransaction();
 		return list.toString();
