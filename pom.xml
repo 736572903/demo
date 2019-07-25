@@ -98,6 +98,28 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        
+        <!-- Spring Boot Redis依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <!-- 1.5的版本默认采用的连接池技术是jedis  2.0以上版本默认连接池是lettuce（netty，线程安全）, 如果采用jedis，所以需要排除lettuce的jar -->
+        </dependency>
+        
+        <!--spring2.0集成redis所需common-pool2-->
+        <!-- 必须加上，jedis和lettuce依赖此  -->
+        <!-- spring boot 2.0 的操作手册有标注 大家可以去看看 地址是：https://docs.spring.io/spring-boot/docs/2.0.3.RELEASE/reference/htmlsingle/-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
+        
+        <!-- JsonObject -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.47</version>
+        </dependency>
 
 		<!-- 热部署 -->
 		<!-- devtools可以实现页面热部署（即页面修改后会立即生效， 这个可以直接在application.properties文件中配置spring.thymeleaf.cache=false来实现） -->
