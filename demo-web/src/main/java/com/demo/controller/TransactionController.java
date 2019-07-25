@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.alibaba.dubbo.config.annotation.Reference;
+
 import com.demo.entity.OriginalBill;
 import com.demo.service.IHbAppService;
 import com.demo.service.IOriginalBillService;
@@ -20,8 +20,8 @@ import com.demo.service.IOriginalBillService;
  * http://localhost:8081/bill/queryOriginalBill
  */
 @Controller
-@RequestMapping("/bill")
-public class OriginalBillController {
+@RequestMapping("")
+public class TransactionController {
 	
 	@Autowired
     private IOriginalBillService originalService;
@@ -31,9 +31,9 @@ public class OriginalBillController {
 //	@Reference(version = "1.0.0")
 	IHbAppService hbAppService;
 	
-	@GetMapping("/queryOriginalBill")
+	@GetMapping("/useTransaction")
 	@ResponseBody
-	public String queryOriginalBill(){
+	public String useTransaction(){
 		
 		//数据源1 正常查询
 		List<OriginalBill> list = originalService.getOriginalBillByUserId(193);
@@ -47,7 +47,7 @@ public class OriginalBillController {
 			//数据源2 只对一个数据源操作并成功回滚
 			hbAppService.saveHbAppHasTransaction();
 		} catch (Exception e) {
-			System.out.println(String.format("捕捉：%s", e.getMessage()));
+//			System.out.println(String.format("捕捉：%s", e.getMessage()));
 		}
 		
 		//数据源2 正常存储

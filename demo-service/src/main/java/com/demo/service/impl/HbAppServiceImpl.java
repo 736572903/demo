@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
 //import com.alibaba.dubbo.config.annotation.Service;
 import com.demo.datasource.DataSource;
 import com.demo.entity.HbApp;
