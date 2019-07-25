@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -17,24 +18,93 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import com.alibaba.druid.pool.DruidDataSource;
 import com.demo.transaction.MultiDataSourceTransactionFactory;
 
 @Configuration
 @MapperScan(basePackages = "com.demo.mapper", sqlSessionFactoryRef = "SqlSessionFactory")
-@PropertySource(value = { "classpath:config/application.properties" })
+@PropertySource(value = { "classpath:config-base/application.properties" })
 public class DataSourceConfig {
+	
+	/**
+	 * 第一个数据库
+	 */
+	@Value("${spring.datasource1.jdbc-url}")
+    private String spring_datasource1_jdbc_url;
+    @Value("${spring.datasource1.username}")
+    private String spring_datasource1_username;
+    @Value("${spring.datasource1.password}")
+    private String spring_datasource1_password;
+    
+    /**
+	 * 第二个数据库
+	 */
+    @Value("${spring.datasource2.jdbc-url}")
+    private String spring_datasource2_jdbc_url;
+    @Value("${spring.datasource2.username}")
+    private String spring_datasource2_username;
+    @Value("${spring.datasource2.password}")
+    private String spring_datasource2_password;
+    
+    
+    @Value("${spring.datasource.driver-class-name}")
+    private String driverClassName;
+    @Value("${spring.datasource.auto-commit}")
+    private boolean autoCommit;
+    @Value("${spring.datasource.default-auto-commit}")
+    private boolean defaultAutoCommit;
+    @Value("${spring.datasource.default-transaction-isolation}")
+    private int defaultTransactionIsolation;
+    @Value("${spring.datasource.initialSize}")
+    private int initialSize;
+    @Value("${spring.datasource.minIdle}")
+    private int minIdle;
+    @Value("${spring.datasource.maxActive}")
+    private int maxActive;
 
 	@Primary
 	@Bean(name = "datasource1")
-	@ConfigurationProperties(prefix = "spring.datasource1")
+//	@ConfigurationProperties(prefix = "spring.datasource1")
 	public DataSource getDateSource1() {
-		return DataSourceBuilder.create().build();
+		
+		DruidDataSource datasource = new DruidDataSource();
+		
+		// 基础连接
+		datasource.setUrl(spring_datasource1_jdbc_url);
+		datasource.setUsername(spring_datasource1_username);
+		datasource.setPassword(spring_datasource1_password);
+
+		// 基础配置
+		datasource.setDriverClassName(driverClassName);
+		datasource.setDefaultAutoCommit(defaultAutoCommit);
+		datasource.setDefaultTransactionIsolation(defaultTransactionIsolation);
+		datasource.setInitialSize(initialSize);
+		datasource.setMinIdle(minIdle);
+		datasource.setMaxActive(maxActive);
+		
+		return datasource;
 	}
 
 	@Bean(name = "datasource2")
-	@ConfigurationProperties(prefix = "spring.datasource2")
+//	@ConfigurationProperties(prefix = "spring.datasource2")
 	public DataSource getDateSource2() {
-		return DataSourceBuilder.create().build();
+		
+		DruidDataSource datasource = new DruidDataSource();
+		
+		// 基础连接
+		datasource.setUrl(spring_datasource2_jdbc_url);
+		datasource.setUsername(spring_datasource2_username);
+		datasource.setPassword(spring_datasource2_password);
+
+		// 基础配置
+		datasource.setDriverClassName(driverClassName);
+		datasource.setDefaultAutoCommit(defaultAutoCommit);
+		datasource.setDefaultTransactionIsolation(defaultTransactionIsolation);
+		datasource.setInitialSize(initialSize);
+		datasource.setMinIdle(minIdle);
+		datasource.setMaxActive(maxActive);
+		
+		return datasource;
 	}
 
 	@Bean(name = "dynamicDataSource")
