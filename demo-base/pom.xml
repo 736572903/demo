@@ -9,6 +9,15 @@
 
 	<artifactId>demo-base</artifactId>
 	
+	<dependencies>
+		<!-- guava谷歌  elaticjob里面已经包含了这个jar包-->
+        <dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>18.0</version>
+		</dependency>
+	</dependencies>
+	
 	<!-- 非启动jar -->
 	<build>
 		<plugins>

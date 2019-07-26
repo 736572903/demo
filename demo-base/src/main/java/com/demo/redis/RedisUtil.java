@@ -82,10 +82,15 @@ public class RedisUtil {
 	 * 除了 NOT 操作之外，其他操作都可以接受一个或多个 key 作为输入，执行结果将始终保持到destkey里面。
      */
     public Long bitOp(RedisStringCommands.BitOperation op, String saveKey, String... desKey) {
+    	
         byte[][] bytes = new byte[desKey.length][];
+        
         for (int i = 0; i < desKey.length; i++) {
+        	
             bytes[i] = desKey[i].getBytes();
+            
         }
+        
         return redisTemplate.execute((RedisCallback<Long>) con -> con.bitOp(op, saveKey.getBytes(), bytes));
     }
     
