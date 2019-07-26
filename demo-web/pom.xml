@@ -18,6 +18,12 @@
 			<groupId>com.demo</groupId>
 			<artifactId>demo-service</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>guava</artifactId>
+					<groupId>com.google.guava</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		
 		
@@ -26,7 +32,13 @@
             <groupId>com.dangdang</groupId>
             <artifactId>elastic-job-lite-core</artifactId>
             <version>${elastic-job.version}</version>
-        </dependency>
+            <exclusions>
+            	<exclusion>
+            		<artifactId>guava</artifactId>
+            		<groupId>com.google.guava</groupId>
+            	</exclusion>
+            </exclusions>
+		</dependency>
         
         <dependency>
             <groupId>com.dangdang</groupId>

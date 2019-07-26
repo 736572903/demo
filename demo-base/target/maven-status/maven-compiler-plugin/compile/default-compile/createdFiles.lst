@@ -1,8 +1,0 @@
-com\demo\datasource\MultiDataSourceTransaction.class
-com\demo\datasource\DataSourceAop.class
-com\demo\datasource\DataSource.class
-com\demo\datasource\DataSourceType$DataBaseType.class
-com\demo\datasource\DataSourceType.class
-com\demo\datasource\DataSourceConfig.class
-com\demo\datasource\DynamicDataSource.class
-com\demo\datasource\MultiDataSourceTransactionFactory.class

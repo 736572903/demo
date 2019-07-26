@@ -46,7 +46,9 @@ public class DataSourceConfig {
     @Value("${spring.datasource2.password}")
     private String spring_datasource2_password;
     
-    
+    /**
+     * 通用配置
+     */
     @Value("${spring.datasource.driver-class-name}")
     private String driverClassName;
     @Value("${spring.datasource.auto-commit}")
