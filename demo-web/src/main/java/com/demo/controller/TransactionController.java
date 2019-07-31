@@ -4,11 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.entity.OriginalBill;
 import com.demo.service.IHbAppService;
@@ -17,9 +16,8 @@ import com.demo.service.IOriginalBillService;
 
 /**
  * 
- * http://localhost:8081/bill/queryOriginalBill
  */
-@Controller
+@RestController
 @RequestMapping("")
 public class TransactionController {
 	
@@ -32,7 +30,6 @@ public class TransactionController {
 	IHbAppService hbAppService;
 	
 	@GetMapping("/useTransaction")
-	@ResponseBody
 	public String useTransaction(){
 		
 		//数据源1 正常查询
@@ -60,7 +57,6 @@ public class TransactionController {
 	//两个不同数据源均回滚，事务生效
 	@Transactional
 	@GetMapping("/testMutiDataRollback")
-	@ResponseBody
 	public void testMutiDataRollback(){
 		
 		OriginalBill bill = Optional.ofNullable(originalService.getOriginalBillByUserId(193))
