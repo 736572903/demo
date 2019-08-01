@@ -3,6 +3,7 @@ package com.demo.datasource;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 import com.demo.datasource.DataSourceType.DataBaseType;
 
@@ -14,7 +15,10 @@ public class DataSourceAop {
 	//用路径
 	
 	//用注解
-	@Around("execution(* com.demo.service*.impl..*.*(..))")
+	@Pointcut("execution(* com.demo.service*.impl..*.*(..))")
+	public void switchDataSources() {}
+	
+	@Around("switchDataSources()")
     public Object doAround(ProceedingJoinPoint pjp) throws Throwable {
 	    
 		//类上的数据源注解
