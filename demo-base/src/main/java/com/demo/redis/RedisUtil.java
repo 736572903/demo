@@ -5,6 +5,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import javax.annotation.PostConstruct;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,11 @@ public class RedisUtil {
     private RedisTemplate<String, Object> redisTemplate;
     
     private static Logger log = LoggerFactory.getLogger(RedisUtil.class);
+    
+    @PostConstruct
+    public void init() {
+        System.out.println("RedisUtil初始化");
+    }
     
     
     // ==========================bitmap布隆过滤器===========================
