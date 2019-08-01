@@ -36,5 +36,5 @@ public class OriginalBillServiceImpl implements IOriginalBillService {
 		logger.info(String.format("当前操作的原始账单主键id为：%d", originalBill == null ? 0 : originalBill.getId()));
 		dao.updateOriginalBill(originalBill); 
 	}
-
+	
 }
