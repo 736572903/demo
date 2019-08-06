@@ -2,14 +2,13 @@ package com.demo.datasource;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.sql.DataSource;
+
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -19,6 +18,8 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
+//import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import com.demo.transaction.MultiDataSourceTransactionFactory;
 
 @Configuration
@@ -124,11 +125,12 @@ public class DataSourceConfig {
 	@Bean(name = "SqlSessionFactory")
 	public SqlSessionFactory test1SqlSessionFactory(@Qualifier("dynamicDataSource") DataSource dynamicDataSource)
 			throws Exception {
-		SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
+//		SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
+		//如果使用mybatis-plus，请使用 MybatisSqlSessionFactoryBean，如果使用上面则报错 Invalid bound statement (not found)
+		MybatisSqlSessionFactoryBean bean = new MybatisSqlSessionFactoryBean();
 		bean.setDataSource(dynamicDataSource);
 		bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:mapper/*.xml"));
 		bean.setTransactionFactory(new MultiDataSourceTransactionFactory());
-
 		return bean.getObject();
 	}
 
