@@ -21,7 +21,7 @@
 			<!--输出日志的格式 -->
 			<PatternLayout pattern="${LOG_PATTERN}" />
 			<!--控制台只输出level及其以上级别的信息（onMatch），其他的直接拒绝（onMismatch） -->
-			<ThresholdFilter level="info" onMatch="ACCEPT"
+			<ThresholdFilter level="debug" onMatch="ACCEPT"
 				onMismatch="DENY" />
 		</console>
 
@@ -85,16 +85,16 @@
 	<loggers>
 
 		<!--过滤掉spring和mybatis的一些无用的DEBUG信息 -->
-		<logger name="org.mybatis" level="info" additivity="false">
+		<logger name="org.mybatis" level="debug" additivity="false">
 			<AppenderRef ref="Console" />
 		</logger>
 		<!--监控系统信息 -->
 		<!--若是additivity设为false，则 子Logger 只会在自己的appender里输出，而不会在 父Logger 的appender里输出。 -->
-		<Logger name="org.springframework" level="info" additivity="false">
+		<Logger name="org.springframework" level="debug" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
-
-		<root level="info">
+		
+		<root level="debug">
 			<appender-ref ref="Console" />
 			<appender-ref ref="Filelog" />
 			<appender-ref ref="RollingFileInfo" />

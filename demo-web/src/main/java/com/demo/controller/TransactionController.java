@@ -15,7 +15,7 @@ import com.demo.service.IOriginalBillService;
 
 
 /**
- * 
+ * 事务的验证
  */
 @RestController
 @RequestMapping("")
