@@ -57,16 +57,36 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<!-- springboot mybatis -->
-		<dependency>
+		<!-- springboot mybatis baomidou 里面包含了这个-->
+		<!-- <dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 			<version>1.1.1</version>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
+		
+		<!-- baomidou 里面包含了这个 -->
+		<!-- <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency> -->
+		
+		<!-- baomidou 快速生成mybatis文件，避免大量重复操作 -->
+		<dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.1.2</version>
+        </dependency>
+        
+        <!-- mybatis-plus 完美的输出打印 SQL 及执行时长 -->
+        <!-- <dependency>
+    		<groupId>p6spy</groupId>
+    		<artifactId>p6spy</artifactId>
+    		<version>3.8.0</version>
+		</dependency> -->
 
 		<!-- start:使用druid数据源依赖 -->
 		<dependency>
@@ -79,11 +99,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
 		
 		<!-- Dubbo依赖 -->
