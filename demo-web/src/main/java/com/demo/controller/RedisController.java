@@ -30,6 +30,9 @@ public class RedisController {
 			return "被锁了";
 		}
 		
+		//测试监听到失效key
+		redisUtil.set("testExpire", "2", 10);
+		
 		//测试bitmap布隆过滤器
 		redisUtil.setBit("{count}:count1", 1, true);
 		redisUtil.setBit("{count}:count1", 3, true);

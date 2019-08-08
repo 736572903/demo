@@ -90,11 +90,11 @@
 		</logger>
 		<!--监控系统信息 -->
 		<!--若是additivity设为false，则 子Logger 只会在自己的appender里输出，而不会在 父Logger 的appender里输出。 -->
-		<Logger name="org.springframework" level="debug" additivity="false">
+		<Logger name="org.springframework" level="info" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 		
-		<root level="debug">
+		<root level="info">
 			<appender-ref ref="Console" />
 			<appender-ref ref="Filelog" />
 			<appender-ref ref="RollingFileInfo" />
