@@ -16,17 +16,6 @@ public class DemoApplication {
 		
 		SpringApplication.run(DemoApplication.class, args);
 		
-        synchronized (DemoApplication.class)
-		{
-			while (true) 
-				try
-				{
-					DemoApplication.class.wait();
-				}
-				catch (Throwable e) { 
-					e.printStackTrace();
-				}
-		}
 	}
 
 }

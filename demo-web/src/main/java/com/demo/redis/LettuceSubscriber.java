@@ -14,6 +14,7 @@ import io.lettuce.core.cluster.pubsub.api.async.NodeSelectionPubSubAsyncCommands
 import io.lettuce.core.cluster.pubsub.api.async.PubSubAsyncNodeSelection;
 import io.lettuce.core.pubsub.RedisPubSubAdapter;
 
+@SuppressWarnings("rawtypes")
 @Component
 public class LettuceSubscriber extends RedisPubSubAdapter {
  
@@ -32,7 +33,8 @@ public class LettuceSubscriber extends RedisPubSubAdapter {
     /**
      * 启动监听
      */
-    @PostConstruct
+	@SuppressWarnings("unchecked")
+	@PostConstruct
     public void startListener() {
     	logger.info("开始启动redis过期key监听-------------------");
         // 异步订阅

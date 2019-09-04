@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import io.lettuce.core.cluster.models.partitions.RedisClusterNode;
 import io.lettuce.core.cluster.pubsub.RedisClusterPubSubAdapter;
 
+@SuppressWarnings("rawtypes")
 @Component
 public class ClusterGrooveAdapter extends RedisClusterPubSubAdapter {
  
