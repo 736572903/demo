@@ -10,9 +10,9 @@ import io.lettuce.core.cluster.pubsub.RedisClusterPubSubAdapter;
 @SuppressWarnings("rawtypes")
 @Component
 public class ClusterGrooveAdapter extends RedisClusterPubSubAdapter {
- 
+
     private static Logger logger = LoggerFactory.getLogger(ClusterGrooveAdapter.class);
- 
+
     @Override
     public void message(RedisClusterNode node, Object channel, Object message) {
         String expiredKey = null;
@@ -22,7 +22,7 @@ public class ClusterGrooveAdapter extends RedisClusterPubSubAdapter {
             logger.error("错误的过期消息类型");
             return;
         }
-        logger.info("过期的key:"+expiredKey);
+        logger.info("过期的key:" + expiredKey);
         logger.info("处理过期后的业务:");
     }
 }

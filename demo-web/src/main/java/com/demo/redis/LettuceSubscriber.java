@@ -17,31 +17,30 @@ import io.lettuce.core.pubsub.RedisPubSubAdapter;
 @SuppressWarnings("rawtypes")
 @Component
 public class LettuceSubscriber extends RedisPubSubAdapter {
- 
+
     private static Logger logger = LoggerFactory.getLogger(LettuceSubscriber.class);
- 
+
     private static final String EXPIRED_CHANNEL = "__keyevent@0__:expired";
- 
- 
+
+
     @Resource
     private RedisClusterClient clusterClient;
- 
+
     @Autowired
     private ClusterGrooveAdapter clusterGrooveAdapter;
- 
- 
+
+
     /**
      * 启动监听
      */
-	@SuppressWarnings("unchecked")
-	@PostConstruct
+    @PostConstruct
     public void startListener() {
-    	logger.info("开始启动redis过期key监听-------------------");
+        logger.info("开始启动redis过期key监听-------------------");
         // 异步订阅
         StatefulRedisClusterPubSubConnection<String, String> pubSubConnection = clusterClient.connectPubSub();
         pubSubConnection.setNodeMessagePropagation(true);
         pubSubConnection.addListener(clusterGrooveAdapter);
- 
+
         PubSubAsyncNodeSelection<String, String> masters = pubSubConnection.async().masters();
         NodeSelectionPubSubAsyncCommands<String, String> commands = masters.commands();
         commands.subscribe(EXPIRED_CHANNEL);

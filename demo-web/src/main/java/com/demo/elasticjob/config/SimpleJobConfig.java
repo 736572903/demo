@@ -16,14 +16,17 @@ import com.dangdang.ddframe.job.reg.zookeeper.ZookeeperRegistryCenter;
 import com.demo.elasticjob.SimpleElasticJob;
 import com.demo.elasticjob.SimpleElasticJob2;
 
+/**
+ * 功能描述:
+ *
+ * @author wanghouji
+ * @date 2019/11/4 10:40 上午
+ */
 @Configuration
 public class SimpleJobConfig {
 	@Resource
 	private ZookeeperRegistryCenter regCenter;
 	
-	/**
-	 * 第一个simplejob
-	 */
 	@Bean
 	public SimpleElasticJob simpleJob() {
 		return new SimpleElasticJob();
@@ -37,9 +40,6 @@ public class SimpleJobConfig {
 				getSimpleAJobConfiguration(simpleJob.getClass(), cron, shardingTotalCount));
 	}
 	
-	/**
-	 * 第二个simplejob
-	 */
 	@Bean
 	public SimpleElasticJob2 simpleJob2() {
 		return new SimpleElasticJob2();
