@@ -15,47 +15,47 @@ import com.demo.service.IHbAppService;
 //@Service(version = "1.0.0", interfaceClass=IHbAppService.class)
 @Service(value = "hbAppService")
 @DataSource(source = "test02")
-public class HbAppServiceImpl implements IHbAppService{
-	
-	@Autowired
-	HbAppDao hbAppDao;
-	
-	@Override
-	@Transactional(transactionManager="transactionManager2", rollbackFor=Exception.class, 
-			propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
-	public void saveHbAppHasTransaction() {
-		
-		HbApp hbApp = new HbApp();
-		hbApp.setName("name3");
-		hbApp.setCid(1);
-		hbApp.setStatus(1);
-		hbApp.setContact("contact");
-		
-		hbAppDao.saveHbApp(hbApp);
-		
-		hbApp = new HbApp();
-		hbApp.setName("name4");
-		hbApp.setCid(1);
-		hbApp.setStatus(1);
-		hbApp.setContact("contact");
-		hbAppDao.saveHbApp(hbApp);
-		
-		//触发回滚
-		hbApp = null;
-		hbApp.getCid();
+public class HbAppServiceImpl implements IHbAppService {
+
+    @Autowired
+    HbAppDao hbAppDao;
+
+    @Override
+    @Transactional(transactionManager = "transactionManager2", rollbackFor = Exception.class,
+            propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
+    public void saveHbAppHasTransaction() {
+
+        HbApp hbApp = new HbApp();
+        hbApp.setName("name3");
+        hbApp.setCid(1);
+        hbApp.setStatus(1);
+        hbApp.setContact("contact");
+
+        hbAppDao.saveHbApp(hbApp);
+
+        hbApp = new HbApp();
+        hbApp.setName("name4");
+        hbApp.setCid(1);
+        hbApp.setStatus(1);
+        hbApp.setContact("contact");
+        hbAppDao.saveHbApp(hbApp);
+
+        //触发回滚
+        hbApp = null;
+        hbApp.getCid();
 //		TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-	}
-	
-	@Override
-	public void saveHbAppNoTransaction() {
-		
-		HbApp hbApp1 = new HbApp();
-		hbApp1.setName("noTransaction");
-		hbApp1.setCid(1);
-		hbApp1.setStatus(1);
-		hbApp1.setContact("contact");
-		hbAppDao.saveHbApp(hbApp1);
-		
-	}
+    }
+
+    @Override
+    public void saveHbAppNoTransaction() {
+
+        HbApp hbApp1 = new HbApp();
+        hbApp1.setName("noTransaction");
+        hbApp1.setCid(1);
+        hbApp1.setStatus(1);
+        hbApp1.setContact("contact");
+        hbAppDao.saveHbApp(hbApp1);
+
+    }
 
 }

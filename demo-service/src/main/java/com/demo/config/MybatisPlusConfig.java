@@ -13,11 +13,12 @@ public class MybatisPlusConfig {
      */
     @Bean
     public PerformanceInterceptor performanceInterceptor() {
-    	PerformanceInterceptor performanceInterceptor = new PerformanceInterceptor();
-    	performanceInterceptor.setFormat(true);
-    	performanceInterceptor.setMaxTime(2000);
+        PerformanceInterceptor performanceInterceptor = new PerformanceInterceptor();
+        performanceInterceptor.setFormat(true);
+        performanceInterceptor.setMaxTime(2000);
         return performanceInterceptor;
     }
+
     /**
      * 分页插件
      */

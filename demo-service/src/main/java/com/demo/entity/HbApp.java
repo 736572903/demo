@@ -2,58 +2,58 @@ package com.demo.entity;
 
 import java.io.Serializable;
 
-public class HbApp implements Serializable{
-	
-	private static final long serialVersionUID = -2603202245750676234L;
+public class HbApp implements Serializable {
 
-	private int id;
-	
-	private String name;
-	
-	private int cid;
-	
-	private int status;
-	
-	private String contact;
+    private static final long serialVersionUID = -2603202245750676234L;
 
-	public int getId() {
-		return id;
-	}
+    private int id;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    private String name;
 
-	public String getName() {
-		return name;
-	}
+    private int cid;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    private int status;
 
-	public int getCid() {
-		return cid;
-	}
+    private String contact;
 
-	public void setCid(int cid) {
-		this.cid = cid;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public int getStatus() {
-		return status;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setStatus(int status) {
-		this.status = status;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getContact() {
-		return contact;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setContact(String contact) {
-		this.contact = contact;
-	}
-	
+    public int getCid() {
+        return cid;
+    }
+
+    public void setCid(int cid) {
+        this.cid = cid;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
 }

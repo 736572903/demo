@@ -12,8 +12,8 @@ import com.demo.service.IBillInfoService;
 @Service(value = "billInfoService")
 @DataSource(source = "test01")
 public class BillInfoServiceImpl extends ServiceImpl<BillInfoDao, BillInfo> implements IBillInfoService {
-	
-	@Autowired
-	private BillInfoDao dao;
+
+    @Autowired
+    private BillInfoDao dao;
 
 }

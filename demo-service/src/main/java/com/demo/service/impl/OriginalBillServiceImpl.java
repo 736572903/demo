@@ -1,4 +1,4 @@
- package com.demo.service.impl;
+package com.demo.service.impl;
 
 import java.util.List;
 
@@ -15,26 +15,26 @@ import com.demo.service.IOriginalBillService;
 @Service(value = "originalService")
 @DataSource(source = "test01")
 public class OriginalBillServiceImpl implements IOriginalBillService {
-	
-	private static final Logger logger = LoggerFactory.getLogger(OriginalBillServiceImpl.class);
-	
-	@Autowired
-	private OriginalBillDao dao;
 
-	@Override
-	public List<OriginalBill> getOriginalBillByUserId(long khUserId) {
-		return dao.getOriginalBillByUserId(khUserId);
-	}
+    private static final Logger logger = LoggerFactory.getLogger(OriginalBillServiceImpl.class);
 
-	@Override
-	public List<OriginalBill> getAllOriginalBill() {
-		return dao.getAllOriginalBill();
-	}
+    @Autowired
+    private OriginalBillDao dao;
 
-	@Override
-	public void updateOriginalBill(OriginalBill originalBill) {
-		logger.info(String.format("当前操作的原始账单主键id为：%d", originalBill == null ? 0 : originalBill.getId()));
-		dao.updateOriginalBill(originalBill); 
-	}
-	
+    @Override
+    public List<OriginalBill> getOriginalBillByUserId(long khUserId) {
+        return dao.getOriginalBillByUserId(khUserId);
+    }
+
+    @Override
+    public List<OriginalBill> getAllOriginalBill() {
+        return dao.getAllOriginalBill();
+    }
+
+    @Override
+    public void updateOriginalBill(OriginalBill originalBill) {
+        logger.info(String.format("当前操作的原始账单主键id为：%d", originalBill == null ? 0 : originalBill.getId()));
+        dao.updateOriginalBill(originalBill);
+    }
+
 }

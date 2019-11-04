@@ -3,76 +3,76 @@ package com.demo.entity;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class OriginalBill implements Serializable{
-	
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = -1278116642363250822L;
+public class OriginalBill implements Serializable {
 
-	/**
-	 * 主键id
-	 */
-	private long id;
-	
-	/**
-	 * 用户id
-	 */
-	private long khUserId;
-	
-	/**
-	 * 邮件地址
-	 */
-	private String emailAddress;
-	
-	/**
-	 * 下载时间
-	 */
-	private Timestamp downTime;
-	
-	/**
-	 * 更新人
-	 */
-	private long lastUpdateUser;
+    /**
+     *
+     */
+    private static final long serialVersionUID = -1278116642363250822L;
 
-	public long getId() {
-		return id;
-	}
+    /**
+     * 主键id
+     */
+    private long id;
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    /**
+     * 用户id
+     */
+    private long khUserId;
 
-	public long getKhUserId() {
-		return khUserId;
-	}
+    /**
+     * 邮件地址
+     */
+    private String emailAddress;
 
-	public void setKhUserId(long khUserId) {
-		this.khUserId = khUserId;
-	}
+    /**
+     * 下载时间
+     */
+    private Timestamp downTime;
 
-	public String getEmailAddress() {
-		return emailAddress;
-	}
+    /**
+     * 更新人
+     */
+    private long lastUpdateUser;
 
-	public void setEmailAddress(String emailAddress) {
-		this.emailAddress = emailAddress;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public Timestamp getDownTime() {
-		return downTime;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public void setDownTime(Timestamp downTime) {
-		this.downTime = downTime;
-	}
+    public long getKhUserId() {
+        return khUserId;
+    }
 
-	public long getLastUpdateUser() {
-		return lastUpdateUser;
-	}
+    public void setKhUserId(long khUserId) {
+        this.khUserId = khUserId;
+    }
 
-	public void setLastUpdateUser(long lastUpdateUser) {
-		this.lastUpdateUser = lastUpdateUser;
-	}
-	
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public Timestamp getDownTime() {
+        return downTime;
+    }
+
+    public void setDownTime(Timestamp downTime) {
+        this.downTime = downTime;
+    }
+
+    public long getLastUpdateUser() {
+        return lastUpdateUser;
+    }
+
+    public void setLastUpdateUser(long lastUpdateUser) {
+        this.lastUpdateUser = lastUpdateUser;
+    }
+
 }
